@@ -43,7 +43,7 @@ export default function ProductList() {
           <View className="rounded-lg px-2 py-2 mb-4 w-[49%] border border-[#93939340]">
             {/* Product Image with Floating Badge */}
             <View className="relative">
-              <Image source={item.image} className="w-full h-40 rounded-lg" />
+              <Image source={item.image} className="w-full h-32 rounded-t-lg" />
               {/* <View className="absolute top-2 left-2 bg-gray-200 px-2 py-1 rounded-md">
                 <Text className="text-xs text-gray-600">2 Baskets Left</Text>
               </View> */}

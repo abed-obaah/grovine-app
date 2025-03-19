@@ -41,7 +41,7 @@ const VideoScreen = () => {
 
         {/* RELATED RECIPES */}
         <View className="p-4">
-          <View className="flex-row justify-between items-center">
+          <View className="flex-row justify-between items-center mb-2">
             <Text className="text-lg font-semibold text-gray-900">Related Recipes</Text>
             <Text className="text-green-500 font-medium">View all</Text>
           </View>
