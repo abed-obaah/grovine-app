@@ -1,9 +1,11 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
 
-import { Pressable, Text, View } from "@/ui";
+import { Pressable, Text, View,	Image, } from "@/ui";
 import { router } from "expo-router";
 import { StyleSheet } from "react-native";
+import React from "react";
+
 
 type Props = {
   title: string;
@@ -29,12 +31,15 @@ export const Header = ({
 
   return (
     <View
-      style={styles.shadowBox}
-      className="w-full px-4 py-[26px] flex flex-row items-center justify-center relative shadow-lg bg-white"
+      className="w-full px-4 py-[26px] flex flex-row items-center justify-center relative border-b border-b-[#E0E5ED] mb-5"
     >
       {showBackButton && (
         <Pressable onPress={handleOnbackPress} className="absolute left-[16px]">
-          <AntDesign name="left" size={24} color="black" />
+             <Image
+               source={require("@/assets/icons/Back.png")}
+                className="w-10 h-10"
+                 resizeMode="contain"
+                   />
         </Pressable>
       )}
 

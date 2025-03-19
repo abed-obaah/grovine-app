@@ -9,6 +9,9 @@ import {
 	Text,
 	View,
 } from "src/ui";
+import { Header } from '@/components/header';
+import { ScreenLayout } from '@/components/screen-layout';
+import { router } from 'expo-router';
 
 const RecipeDetailScreen = ({ navigation }) => {
     const [ingredients, setIngredients] = useState([
@@ -69,75 +72,83 @@ const RecipeDetailScreen = ({ navigation }) => {
       };
 
   return (
-    <ScrollView className="flex-1 bg-white">
-      {/* Header */}
-      <View className="flex-row items-center p-4">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-
-
-            <View className='px-4'>
-                 <Image source={require("@/assets/images/eggs.png")} className="w-full h-48 rounded-[10px] " />
-            </View>
-      {/* Recipe Image */}
-     
-      {/* Recipe Title and Description */}
-      <View className="p-4">
-        <Text className="text-2xl font-bold">Egg Shakshuka</Text>
-        <Text className="text-gray-600 text-sm mt-1">
-         Egg Shakshuka is a hearty and flavorful Middle Eastern dish featuring poached eggs simmered in a rich, spiced tomato and bell pepper sauce
-        </Text>
-
-        <View className='flex-row justify-between my-5'>
-                <Text className="ext-md  font-gilroyMeduim">Ingredients</Text>
-                <TouchableOpacity onPress={selectAllIngredients}>
-                    <Text className="text-sm font-gilroyMeduim text-[#4CAF50]">Select all</Text>
+     <ScreenLayout useStaticView backgroundColor="#FDFDFD">
+        <View className="pt-[20px]">
+             <Header title="Recipe Detail" />
+           </View>
+            <ScrollView className="flex-1"
+             contentContainerStyle={{ flexGrow: 1, paddingBottom: 40 }} >
+                {/* Header */}
+                
+                <TouchableOpacity 
+                        className='px-4' 
+                        onPress={() => router.push("/saved-recipe/VideoScreen")}
+                    >
+                        <Image 
+                            source={require("@/assets/images/eggs.png")} 
+                            className="w-full h-48 rounded-[10px]" 
+                        />
                 </TouchableOpacity>
-        </View>
-        
-        <FlatList
-      data={ingredients}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <TouchableOpacity 
-          className="flex-row items-center mb-2" 
-          onPress={() => toggleSelection(item.id)}
-        >
-          <MaterialIcons 
-            name={item.selected ? "check-box" : "check-box-outline-blank"} 
-            size={20} 
-            color={item.selected ? "green" : "gray"} 
-          />
-          <Text className="ml-2 text-base">{item.name}</Text>
-        </TouchableOpacity>
-      )}
-    />
 
-        {/* Instructions */}
-        <Text className="text-lg font-semibold mt-5">Instruction: How to cook</Text>
-       <FlatList
-      data={steps}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={({ item }) => (
-        <View className="mb-4">
-          <Text className="text-black mt-2 text-base font-gilroyBold">
-            {item.title}
-          </Text>
-          <Text className="text-gray-700 text-base">{item.description}</Text>
-        </View>
-      )}
-    />
-       
-      </View>
+                {/* Recipe Image */}
+                
+                {/* Recipe Title and Description */}
+                <View className="p-4">
+                    <Text className="text-2xl font-bold">Egg Shakshuka</Text>
+                    <Text className="text-gray-600 text-sm mt-1">
+                    Egg Shakshuka is a hearty and flavorful Middle Eastern dish featuring poached eggs simmered in a rich, spiced tomato and bell pepper sauce
+                    </Text>
 
-      {/* Bottom Button */}
-      <TouchableOpacity className="flex-row bg-green-600 p-4 items-center justify-center mx-4 my-5 rounded-lg">
-        <Text className="text-white text-lg font-semibold mr-2">Add to Cart</Text>
-        <Ionicons name="cart-outline" size={20} color="white" />
-      </TouchableOpacity>
-    </ScrollView>
+                    <View className='flex-row justify-between my-5'>
+                            <Text className="ext-md  font-gilroyMeduim">Ingredients</Text>
+                            <TouchableOpacity onPress={selectAllIngredients}>
+                            <Text className="text-sm font-gilroyMeduim text-[#4CAF50]">Select all</Text>
+                            </TouchableOpacity>
+                    </View>
+                    
+                    <FlatList
+                data={ingredients}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <TouchableOpacity 
+                    className="flex-row items-center mb-2" 
+                    onPress={() => toggleSelection(item.id)}
+                    >
+                    <MaterialIcons 
+                        name={item.selected ? "check-box" : "check-box-outline-blank"} 
+                        size={20} 
+                        color={item.selected ? "green" : "gray"} 
+                    />
+                    <Text className="ml-2 text-base">{item.name}</Text>
+                    </TouchableOpacity>
+                )}
+                />
+
+                    {/* Instructions */}
+                    <Text className="text-lg font-semibold mt-5">Instruction: How to cook</Text>
+                <FlatList
+                data={steps}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => (
+                    <View className="mb-4">
+                    <Text className="text-black mt-2 text-base font-gilroyBold">
+                        {item.title}
+                    </Text>
+                    <Text className="text-gray-700 text-base">{item.description}</Text>
+                    </View>
+                )}
+                />
+                
+                </View>
+
+                {/* Bottom Button */}
+                <TouchableOpacity className="flex-row bg-green-600 p-4 items-center justify-center mx-4 my-5 rounded-lg">
+                    <Text className="text-white text-lg font-semibold mr-2">Add Ingredients to Cart</Text>
+                    <Ionicons name="cart-outline" size={20} color="white" />
+                </TouchableOpacity>
+                </ScrollView>
+     </ScreenLayout>
+  
   );
 };
 
