@@ -1,27 +1,32 @@
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import { TouchableOpacity,} from "react-native";
 import { Video } from "expo-av";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import VideoRecipe from '@/components/RecipeVideo'
+import { Header } from "@/components/header";
+import { ScreenLayout } from "@/components/screen-layout";
+import {
+	Button,
+	FocusAwareStatusBar,
+	Image,
+	ScrollView,
+	Text,
+	View,
+} from "src/ui";
+import RelatedRecipe from '@/app/saved-recipe/related-recipe'
 
 const VideoScreen = () => {
   return (
-    <View className="flex-1 bg-white">
+   <ScreenLayout useStaticView backgroundColor="#FDFDFD">
       {/* HEADER */}
-      <View className="flex-row items-center px-4 py-2 bg-white shadow-md">
-        <TouchableOpacity className="p-2">
-          <AntDesign name="arrowleft" size={24} color="black" />
-        </TouchableOpacity>
-        <Text className="text-lg font-bold text-gray-900 flex-1 text-center">
-          Recipe Detail
-        </Text>
-      </View>
-
-      <ScrollView className="flex-1">
-        <View className="w-full bg-black">
-        <VideoRecipe/>
+       <View className="pt-[20px]">
+                   <Header title="Recipe Detail" />
         </View>
-
+        <View className="w-full bg-black">
+            <VideoRecipe/>
+        </View>
+      <ScrollView className="flex-1"
+       contentContainerStyle={{ flexGrow: 1, paddingBottom: 40 }}>
         <View className="p-4">
           <Text className="text-xl font-semibold text-gray-900">
             Egusi Soup With Chicken
@@ -40,17 +45,17 @@ const VideoScreen = () => {
             <Text className="text-lg font-semibold text-gray-900">Related Recipes</Text>
             <Text className="text-green-500 font-medium">View all</Text>
           </View>
-
-        
+            <RelatedRecipe/>
         </View>
-      </ScrollView>
-
-      {/* BOTTOM BUTTON */}
-      <TouchableOpacity className="bg-green-500 py-4 flex-row items-center justify-center rounded-md mx-4 mb-4">
+        <TouchableOpacity className="bg-green-500 py-4 flex-row items-center justify-center rounded-md mx-4 mb-4">
         <Text className="text-white text-lg font-semibold">View Recipe</Text>
         <MaterialIcons name="shopping-cart" size={20} color="white" className="ml-2" />
       </TouchableOpacity>
-    </View>
+      </ScrollView>
+
+      {/* BOTTOM BUTTON */}
+     
+    </ScreenLayout>
   );
 };
 
