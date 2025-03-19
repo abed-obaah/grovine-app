@@ -65,6 +65,7 @@ function RootLayoutNav() {
 				<Stack.Screen name="order" options={{ headerShown: false }} />
 				<Stack.Screen name="saved-recipe" options={{ headerShown: false }} />
 				<Stack.Screen name="story" options={{ headerShown: false }} />
+				{/* <Stack.Screen name="RecipeDetailScreen" options={{ headerShown: false }} /> */}
 			</Stack>
 		</Providers>
 	);
