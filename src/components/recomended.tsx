@@ -69,15 +69,19 @@ export default function ProductList() {
 
             {/* Product Name & Price */}
             <View className="flex-row justify-between items-center mt-2">
-  <Text className="text-gray-700 font-bold">{item.name}</Text>
-  <Text className="text-gray-500">{item.price}</Text>
-</View>
+        <Text className="text-gray-700 font-bold">{item.name}</Text>
+        <Text className="text-gray-500">{item.price}</Text>
+      </View>
 
 
             {/* Add to Cart Button */}
             <TouchableOpacity className="bg-[#4CAF50] mt-2 py-2 rounded-md flex-row items-center justify-center">
               <Text className="text-white font-bold mr-2">Add to Cart</Text>
-              <MaterialIcons name="shopping-cart" size={20} color="white" />
+               <Image
+                                                  source={require("@/assets/images/shopping-cart.png")}
+                                                  className="w-4 h-4 rounded-md mr-2"
+                                                  contentFit="contain"
+                                                  />
             </TouchableOpacity>
           </View>
         )}

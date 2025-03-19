@@ -3,7 +3,7 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import FlashMessage from "react-native-flash-message";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -61,6 +61,10 @@ function RootLayoutNav() {
 				<Stack.Screen name="onboarding" options={{ headerShown: false }} />
 				<Stack.Screen name="auth" options={{ headerShown: false }} />
 				<Stack.Screen name="route" options={{ headerShown: false }} />
+				<Stack.Screen name="trip" options={{ headerShown: false }} />
+				<Stack.Screen name="order" options={{ headerShown: false }} />
+				<Stack.Screen name="saved-recipe" options={{ headerShown: false }} />
+				<Stack.Screen name="story" options={{ headerShown: false }} />
 			</Stack>
 		</Providers>
 	);

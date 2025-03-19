@@ -6,38 +6,38 @@ import { FlatList } from "react-native";
 const products = [
   {
     id: 1,
-    name: "Grape",
-    price: "₦4,800.79",
+    name: "Fruit Salad",
+    price: "~₦4,800.79",
     image: require("@/assets/images/fruit-basket.png"), // Replace with actual image
   },
   {
     id: 2,
-    name: "Apple",
-    price: "₦4,800.79",
+    name: "Fruit Salad",
+     price: "~₦4,800.79",
     image: require("@/assets/images/fruit-basket.png"),
   },
   {
     id: 3,
-    name: "Pineapple",
-    price: "₦4,800.79",
+    name: "Fruit Salad",
+     price: "~₦4,800.79",
     image: require("@/assets/images/fruit-basket.png"),
   },
   {
     id: 4,
-    name: "Kiwi",
-    price: "₦4,800.79",
+    name: "Fruit Salad",
+     price: "~₦4,800.79",
     image: require("@/assets/images/fruit-basket.png"),
   },
   {
     id: 5,
-    name: "Kiwi",
-    price: "₦4,800.79",
+    name: "Fruit Salad",
+     price: "~₦4,800.79",
     image: require("@/assets/images/fruit-basket.png"),
   },
   {
     id: 6,
-    name: "Kiwi",
-    price: "₦4,800.79",
+    name: "Fruit Salad",
+     price: "~₦4,800.79",
     image: require("@/assets/images/fruit-basket.png"),
   },
 ];
@@ -46,7 +46,7 @@ export default function ProductList() {
   return (
     <View className="px-2">
       {/* Header Section */}
-      <View className="flex-row justify-between items-center mb-4">
+      <View className="flex-row justify-between items-center mb-4 px-3">
         <View className="flex flex-row items-center">
                <Image
                                          source={require("@/assets/images/arrow-circle-right.png")}
@@ -67,7 +67,7 @@ export default function ProductList() {
   showsHorizontalScrollIndicator={false}  // Hides the scrollbar for a cleaner look
   contentContainerStyle={{ paddingHorizontal: 10 }}  // Adds spacing on the sides
   renderItem={({ item }) => (
-    <View className="rounded-lg px-2 py-2 mb-4 w-[250px] border border-[#93939340] mr-4">
+    <View className="rounded-lg px-2 py-2 mb-4 w-[203px] border border-[#93939340] mr-4">
       {/* Product Image with Floating Badge */}
       <View className="relative">
         <Image source={item.image} className="w-full h-40 rounded-lg" />
@@ -85,8 +85,12 @@ export default function ProductList() {
 
       {/* Add to Cart Button */}
       <TouchableOpacity className="bg-[#4CAF50] mt-2 py-2 rounded-md flex-row items-center justify-center">
-        <Text className="text-white font-bold mr-2">Add to Cart</Text>
-        <MaterialIcons name="shopping-cart" size={20} color="white" />
+        <Text className="text-white font-thin mr-2">Watch Recipe</Text>
+         <Image
+                                            source={require("@/assets/images/shopping-cart.png")}
+                                            className="w-4 h-4 rounded-md mr-2"
+                                            contentFit="contain"
+                                            />
       </TouchableOpacity>
     </View>
   )}

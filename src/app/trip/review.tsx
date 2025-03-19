@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 
 import { Header } from "@/components/header";
 import { ScreenLayout } from "@/components/screen-layout";
@@ -8,6 +8,14 @@ import { VehicleFeaturesDisplay } from "@/components/trip/vehicle-features-displ
 import { Button, HEIGHT, ScrollView, View,Image,Text } from "@/ui";
 import { router } from "expo-router";
 import React from "react";
+import RecommendedMeal from "@/components/rocommendedMeal";
+
+
+const categories = ["Vegetables",
+	"Fruits", 
+	"Baby & Kids", 
+	];
+
 
 export default function Screen() {
 	return (
@@ -21,36 +29,61 @@ export default function Screen() {
 							<Text className="text-[#4A4A4A] text-lg font-gilroySemibold">Love & Need</Text>    
 						</View>
 			
-						<View className="flex-row items-center gap-4 border border-[#E0E5ED] rounded-lg px-2">
+						<TouchableOpacity className="flex-row items-center gap-2 bg-[#4CAF50] border border-[#E0E5ED] rounded-lg px-2 py-2"
+						onPress={() => router.navigate("/order/index")}>
 								{/* Profile Image */}
+								<View>
+									<Text className="text-xs font-semibold text-[#fff]">View Shopping Cart</Text>
+									
+								</View>
 								<Image
-									source={require("@/assets/images/profile.png")}
-									className="w-9 h-9 rounded-full"
+									source={require("@/assets/images/shopping-cart.png")}
+									className="w-4 h-4 rounded-full"
 								/>
 			
 								{/* Text Content */}
-								<View>
-									<Text className="text-sm font-semibold text-gray-800">Your</Text>
-									<Text className="text-sm font-semibold text-gray-800">Shopping</Text>
-									<Text className="text-sm font-semibold text-gray-800">Assistant</Text>
-								</View>
-				</View>
+								
+				</TouchableOpacity>
 						
 					</View>
+ <View
+							className="border border-[#93939340] bg-[#ffffff] flex flex-row items-center px-2 rounded-lg mx-2"
+							style={{ height: 40 }}
+							>
+							<TextInput
+								className="flex-1 font-gilroyRegular text-sm text-textColor"
+								placeholder="Search for groceries, recipes etc"
+								placeholderTextColor="#667085"
+								style={{ height: 36, paddingVertical: 0 }}
+							/>
 
+							<Image
+								source={require("@/assets/images/search.png")}
+								style={{ width: 18, height: 18 }}
+								resizeMode="contain"
+							/>
+					</View>
 			<ScrollView
 				contentContainerStyle={{ flexGrow: 1 }}
 				bounces={false}
 				showsVerticalScrollIndicator={false}
 				automaticallyAdjustKeyboardInsets
 			>
+				  <View className="mt-4 flex-row flex-wrap px-2">
+									{categories.map((category, index) => (
+									<TouchableOpacity key={index} className="border-[#4CAF50] bg-[#4CAF50] border px-6 py-2 rounded-md mb-2 mx-1.5">
+										<Text className="text-[#fff] text-xs">{category}</Text>
+									</TouchableOpacity>
+									))}
+								</View>
+
 				<View className="flex-1">
 					<View className="flex-1 gap-6 px-4 py-6">
-						<RouteDisplay />
+						<RecommendedMeal/>
 
-						<VehicleFeaturesDisplay />
+						{/* <VehicleFeaturesDisplay />
 
-						<VehicleDetailsDisplay />
+						<VehicleDetailsDisplay /> */}
 					</View>
 				</View>
 			</ScrollView>

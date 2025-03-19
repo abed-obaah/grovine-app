@@ -46,10 +46,7 @@ export default function RecommendedMeal() {
   return (
     <View className="px-4">
       {/* Header Section */}
-      <View className="flex-row justify-between items-center mb-4">
-        <Text className="text-lg font-gilroySemibold text-[#939393]">Recommended</Text>
-        <Text className="text-green-500 font-semibold">View all</Text>
-      </View>
+     
 
       {/* Product List */}
       <FlatList
@@ -77,7 +74,11 @@ export default function RecommendedMeal() {
             {/* Add to Cart Button */}
             <TouchableOpacity className="bg-[#4CAF50] mt-2 py-2 rounded-md flex-row items-center justify-center">
               <Text className="text-white font-bold mr-2">Add to Cart</Text>
-              <MaterialIcons name="shopping-cart" size={20} color="white" />
+              <Image
+                                                 source={require("@/assets/images/shopping-cart.png")}
+                                                 className="w-4 h-4 rounded-md mr-2"
+                                                 contentFit="contain"
+                                                 />
             </TouchableOpacity>
           </View>
         )}
