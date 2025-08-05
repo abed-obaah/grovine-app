@@ -48,7 +48,7 @@ export default function ProductList() {
       {/* Header Section */}
       <View className="flex-row justify-between items-center mb-4">
         <Text className="text-lg font-gilroySemibold text-[#939393]">Recommended</Text>
-        <Text className="text-green-500 font-semibold">View all</Text>
+        <Text className="text-[#4CAF50] font-semibold">View all</Text>
       </View>
 
       {/* Product List */}

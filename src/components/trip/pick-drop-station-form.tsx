@@ -9,7 +9,7 @@ import {
   Text,
   View,
 } from "@/ui";
-import { TimePicker } from "@/ui/time-picker";
+// import { TimePicker } from "@/ui/time-picker";
 import { useState } from "react";
 
 const options: Option[] = [

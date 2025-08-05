@@ -88,16 +88,16 @@ export default function Screen() {
 				</View>
 			</ScrollView>
 
-			<View
+			{/* <View
 				style={styles.shadowBox}
 				className="w-full bg-[#F7F7F7] flex justify-center px-[28px] rounded-tl-[15px] rounded-tr-[15px]"
 			>
 				<Button
-					onPress={() => router.navigate("/trip/live")}
+					// onPress={() => router.navigate("/trip/live")}
 					label="Create trip"
 					fullWidth
 				/>
-			</View>
+			</View> */}
 		</ScreenLayout>
 	);
 }

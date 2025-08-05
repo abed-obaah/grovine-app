@@ -142,7 +142,7 @@ const RecipeDetailScreen = ({ navigation }) => {
                 </View>
 
                 {/* Bottom Button */}
-                <TouchableOpacity className="flex-row bg-green-600 p-4 items-center justify-center mx-4 my-5 rounded-lg">
+                <TouchableOpacity className="flex-row bg-[#4CAF50] p-4 items-center justify-center mx-4 my-5 rounded-lg">
                     <Text className="text-white text-lg font-semibold mr-2">Add Ingredients to Cart</Text>
                     <Ionicons name="cart-outline" size={20} color="white" />
                 </TouchableOpacity>

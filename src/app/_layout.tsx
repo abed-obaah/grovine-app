@@ -65,6 +65,11 @@ function RootLayoutNav() {
 				<Stack.Screen name="order" options={{ headerShown: false }} />
 				<Stack.Screen name="saved-recipe" options={{ headerShown: false }} />
 				<Stack.Screen name="story" options={{ headerShown: false }} />
+				<Stack.Screen name="checkout" options={{ headerShown: false }} />
+				<Stack.Screen name="wallets" options={{ headerShown: false }} />
+				<Stack.Screen name="notifications" options={{ headerShown: false }} />
+				<Stack.Screen name="chef" options={{ headerShown: false }} />
+				<Stack.Screen name="profiles" options={{ headerShown: false }} />
 				{/* <Stack.Screen name="RecipeDetailScreen" options={{ headerShown: false }} /> */}
 			</Stack>
 		</Providers>

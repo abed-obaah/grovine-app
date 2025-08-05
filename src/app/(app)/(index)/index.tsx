@@ -23,14 +23,14 @@ export default function Screen() {
 	return (
 		<ScreenLayout
 			useStaticView
-			floatingComponent={
-				<Pressable
-					onPress={() => router.navigate("/trip/create")}
-					className="w-[50px] h-[50px] rounded-full flex items-center justify-center bg-secondary absolute bottom-[18px] right-[28px]"
-				>
-					<Feather name="plus" size={24} color="white" />
-				</Pressable>
-			}
+			// floatingComponent={
+			// 	<Pressable
+			// 		onPress={() => router.navigate("/wallet")}
+			// 		className="w-[50px] h-[50px] rounded-full flex items-center justify-center bg-secondary absolute bottom-[18px] right-[28px]"
+			// 	>
+			// 		<Feather name="plus" size={24} color="black" />
+			// 	</Pressable>
+			// }
 		>
 			<View style={styles.shadowBox}>
 				<Header />

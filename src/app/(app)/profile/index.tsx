@@ -1,137 +1,215 @@
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+  Modal,
+} from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/Feather';
+import { router } from 'expo-router';
 
-import { MenuButton } from "src/components/home/menu";
-import { ScreenLayout } from "src/components/screen-layout";
-import { Image, Pressable, ScrollView, Text, View } from "src/ui";
-// import { CircularProgress } from "../_layout";
-import { router } from "expo-router";
+// --- Menu Sections Data ---
+const menuSections = [
+  {
+    title: 'Personal',
+    items: [
+      { icon: 'user', text: 'Profile Details', href: '/chef/profile-details' },
+      { icon: 'map-pin', text: 'Address', href: '/chef/address' },
+    ],
+  },
+  {
+    title: 'Services',
+    items: [
+      { icon: 'gift', text: 'Referrals', href: '/chef/referrals' },
+      { icon: 'credit-card', text: 'Gift Cards', href: '/app/gift-cards' },
+    ],
+  },
+  {
+    title: 'More',
+    items: [
+      { icon: 'info', text: "What's New", href: '/app/whats-new' },
+      { icon: 'help-circle', text: 'FAQs', href: '/chef/SupportScreen' },
+      { icon: 'message-square', text: 'Support', href: '/app/support' },
+      { icon: 'shield', text: 'Legal', href: '/app/legal' },
+    ],
+  },
+];
 
-export default function Screen() {
+// --- Menu Item Component ---
+const MenuItem = ({ item, isLast }) => {
+  const handlePress = () => {
+    if (item.href) {
+      router.push(item.href);
+    }
+  };
+
   return (
-    <ScreenLayout useStaticView backgroundColor="#FFFFFF">
-      <View className="flex-1 pt-[60px]">
-        <View className="flex-1 bg-[#FAF9F6] gap-[30px]">
-          <View className="w-full px-4 pt-5">
-            {/* <MenuButton isAbsolute={false} /> */}
+    <TouchableOpacity
+      onPress={handlePress}
+      className={`flex-row items-center justify-between px-4 py-4 ${
+        !isLast ? 'border-b border-gray-100' : ''
+      }`}
+    >
+      <View className="flex-row items-center space-x-3">
+        <Feather name={item.icon} size={20} color="#6B7280" />
+        <Text className="text-sm text-gray-700 ml-2">{item.text}</Text>
+      </View>
+      <Feather name="chevron-right" size={20} color="#9CA3AF" />
+    </TouchableOpacity>
+  );
+};
 
-            <View className="w-full items-center justify-center gap-[14px]">
-              <View className="w-[130px] aspect-square rounded-full bg-[#6670854D] relative">
-                <Image
-                  source={require("../../../assets/images/profile.png")}
-                  contentFit="cover"
-                  className="w-full h-full rounded-full"
-                />
+// --- Header Section ---
+const ProfileHeader = () => (
+  <View className="bg-slate-50">
+    <View className="h-44 rounded-b-3xl relative overflow-hidden">
+      <Image
+        source={require('@/assets/bg21.png')}
+        className="absolute w-full h-full"
+        resizeMode="cover"
+      />
+    </View>
 
-                <Pressable className="w-[32px] h-[32px] rounded-full bg-primary items-center justify-center absolute bottom-0 right-0">
-                  <FontAwesome6 name="add" size={18} color="white" />
-                </Pressable>
-              </View>
-
-              <View>
-                <Text className="text-center text-base font-gilroySemibold text-textColor">
-                 Okoro John
-                </Text>
-                <Text className="text-center text-sm font-gilroyRegular text-textColor">
-                  Joined March 2024
-                </Text>
-              </View>
-            </View>
-          </View>
-
-          <View className="px-4">
-            <View className="w-full h-[60px] rounded-lg bg-[#6670851A] px-4 flex flex-row items-center border border-[#5554ED80]">
-              <View className="flex-1">
-                <Text className="font-gilroyMedium text-sm text-textColor">
-                  Profile completion
-                </Text>
-
-                <Text className="font-gilroyRegular text-xs text-textColor">
-                  60% left to complete your profile
-                </Text>
-              </View>
-
-              {/* <CircularProgress percentage={40} /> */}
-            </View>
-          </View>
-
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-            <View className="flex-1 gap-3">
-              <View className="w-full bg-white rounded-[20px] px-4">
-                <ProfileItem
-                  icon={require("../../../assets/icons/profile.svg")}
-                  label="Personal info"
-                  onPress={() => router.navigate("/profile/personal-info")}
-                />
-
-                <ProfileItem
-                  icon={require("../../../assets/icons/security.svg")}
-                  label="Security"
-                  onPress={() => router.navigate("/(app)/profile/security")}
-                />
-              </View>
-
-              <View className="w-full bg-white rounded-[20px] px-4">
-                <ProfileItem
-                  icon={require("../../../assets/icons/profile.svg")}
-                  label="Notification settings"
-                  onPress={() => router.navigate("/notification")}
-                />
-
-                <ProfileItem
-                  icon={require("../../../assets/icons/people.svg")}
-                  label="Referrals"
-                  onPress={() => router.navigate("profile/referral")}
-                />
-
-                <ProfileItem
-                  icon={require("../../../assets/icons/card.svg")}
-                  label="Payment method"
-                  onPress={() => router.navigate("profile/payment-method")}
-                />
-              </View>
-
-              <View className="w-full bg-white rounded-[20px] px-4">
-                <ProfileItem
-                  icon={require("../../../assets/icons/profile.svg")}
-                  label="Log out"
-                />
-
-                <ProfileItem
-                  icon={require("../../../assets/icons/trash.svg")}
-                  label="Delete my account"
-                  onPress={() => router.navigate("/(app)/profile/delete")}
-                  isDanger
-                />
-              </View>
-            </View>
-          </ScrollView>
+    <View className="items-start -mt-14 px-4">
+      <View className="relative">
+        <Image
+          source={require('@/assets/avater.png')}
+          className="w-28 h-28 rounded-full border-4 border-white"
+        />
+        <View className="absolute bottom-2 right-3 rounded-full bg-white p-1 -mb-2 -mr-2">
+          <TouchableOpacity className="bg-[#B7E8BA] rounded-full p-2">
+            <Icon name="edit" size={10} color="#4CAF50" />
+          </TouchableOpacity>
         </View>
       </View>
-    </ScreenLayout>
-  );
-}
+      <View className="flex-row items-center mt-2">
+        <Text className="text-md font-bold text-slate-800">Craig Orisa</Text>
+        <View className="flex-row items-center bg-[#8C5A2B] px-1 py-1 rounded-sm ml-2">
+          <Image
+            source={require('@/assets/u_award.png')}
+            className="w-4 h-4 rounded-full"
+          />
+          <Text className="text-white font-bold text-xs ml-1">VIP User</Text>
+        </View>
+      </View>
 
-type Props = {
-  label: string;
-  icon: string;
-  isDanger?: boolean;
-  onPress?: () => void;
-};
-export const ProfileItem = ({ ...props }: Props) => {
-  return (
-    <Pressable
-      onPress={props?.onPress}
-      className="w-full h-[60px] items-center flex-row gap-[10px] border-b border-b-[#6670851A]"
-    >
-      <Image source={props?.icon} className="w-6 h-6" contentFit="contain" />
-
-      <Text
-        className={`font-gilroySemibold text-base ${
-          props?.isDanger ? "text-[#B3261E]" : "text-subTextColor"
-        }`}
+      <TouchableOpacity
+        className="absolute right-4 top-16 bg-[#4CAF50] px-4 py-2 rounded-sm flex-row items-center shadow-md shadow-green-900/20"
+        onPress={() => router.push('/wallets/wallet')}
       >
-        {props?.label}
-      </Text>
-    </Pressable>
+        <Text className="text-white font-bold text-sm mr-2">View Wallet</Text>
+        <Image
+          source={require('@/assets/u_wallet.png')}
+          className="w-4 h-4 rounded-full"
+        />
+      </TouchableOpacity>
+    </View>
+  </View>
+);
+
+// --- Main Screen Component ---
+const ProfileScreen = () => {
+  const [showSwitchModal, setShowSwitchModal] = useState(false);
+
+  return (
+    <View className="flex-1">
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <ProfileHeader />
+
+        {/* Create a Chef Account */}
+        <TouchableOpacity
+          className="bg-[#B7E8BA] px-2 py-2 mt-6 rounded-sm flex-row items-center self-start ml-4"
+          onPress={() => setShowSwitchModal(true)}
+        >
+          <Image
+            source={require('@/assets/cap.png')}
+            className="w-8 h-8 rounded-full"
+          />
+          <Text className="text-[#4A4A4A] font-bold text-sm ml-3">
+            Create A Chef Account
+          </Text>
+        </TouchableOpacity>
+
+        {/* Menu Sections */}
+        {menuSections.map((section, index) => (
+          <View key={index}>
+            <Text className="text-gray-500 font-semibold uppercase px-4 mt-6 mb-2 text-xs">
+              {section.title}
+            </Text>
+            <View className="bg-white rounded-xl mx-0 shadow-sm shadow-slate-200">
+              {section.items.map((item, itemIndex) => (
+                <MenuItem
+                  key={itemIndex}
+                  item={item}
+                  isLast={itemIndex === section.items.length - 1}
+                />
+              ))}
+            </View>
+          </View>
+        ))}
+
+        <Text className="text-center text-gray-400 text-xs my-8">
+          v1.0.50(v957)
+        </Text>
+      </ScrollView>
+
+      {/* Switch Mode Modal */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showSwitchModal}
+        onRequestClose={() => setShowSwitchModal(false)}
+      >
+        <View className="flex-1 justify-end bg-black/40">
+          <View className="bg-white rounded-t-3xl px-6 pt-6 pb-10 h-[45%]">
+            <View className="flex-row justify-between items-center mb-6">
+              <Text className="text-xl font-bold text-slate-800">Switch Mode</Text>
+              <TouchableOpacity onPress={() => setShowSwitchModal(false)}>
+                <Icon name="x" size={24} color="#6B7280" />
+              </TouchableOpacity>
+            </View>
+
+            <Text className="text-slate-600 mb-6">Choose your account mode</Text>
+
+            <TouchableOpacity
+              className="border border-green-500 rounded-lg p-4 mb-4 flex-row justify-between items-center"
+              onPress={() => {
+                setShowSwitchModal(false);
+                router.push('/chef/register');
+              }}
+            >
+              <Text className="text-slate-800 font-semibold">Chef Mode</Text>
+              <Icon name="arrow-right" size={20} color="#4CAF50" />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className="border border-gray-300 rounded-lg p-4 flex-row justify-between items-center"
+              onPress={() => {
+                setShowSwitchModal(false);
+                alert("You're already in User mode");
+              }}
+            >
+              <Text className="text-slate-800 font-semibold">User Mode</Text>
+              <Icon name="check" size={20} color="#10B981" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </View>
   );
 };
+
+// --- Export Page with Safe Area ---
+const ProfilePage = () => (
+  <SafeAreaView className="flex-1 bg-white">
+    <StatusBar barStyle="dark-content" />
+    <ProfileScreen />
+  </SafeAreaView>
+);
+
+export default ProfilePage;

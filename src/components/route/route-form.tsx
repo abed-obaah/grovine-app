@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { TextInput } from "react-native";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+// import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { Image, Pressable, Text, View } from "src/ui";
 import { router } from "expo-router";
@@ -146,13 +146,13 @@ export const DepartureDate = () => {
         </Text>
       )}
 
-      <DateTimePickerModal
+      {/* <DateTimePickerModal
         isVisible={isDateTimePickerVisible}
         mode="date"
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
         date={selected}
-      />
+      /> */}
     </Pressable>
   );
 };

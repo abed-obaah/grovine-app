@@ -84,7 +84,7 @@ const OrdersScreen = () => {
             key={tab}
             onPress={() => setSelectedTab(tab)}
             className={`px-4 py-2 rounded-lg ${
-              selectedTab === tab ? "bg-green-500 text-white" : "bg-gray-200"
+              selectedTab === tab ? "bg-[#4CAF50] text-white" : "bg-gray-200"
             }`}
           >
             <Text className={selectedTab === tab ? "text-white" : "text-gray-600"}>{tab}</Text>
@@ -118,11 +118,11 @@ const OrdersScreen = () => {
             {/* Conditional rendering of buttons */}
             {expandedOrder === item.id && (
               <View className="flex-row gap-6 mt-4">
-              <TouchableOpacity className="bg-green-500 px-4 py-4 rounded-md w-64">
+              <TouchableOpacity className="bg-[#4CAF50] px-4 py-4 rounded-md w-64">
                 <Text className="text-white text-center">View Order</Text>
               </TouchableOpacity>
               <TouchableOpacity className="bg-green-200 px-8 py-4 rounded-md ml-2">
-                <Text className="text-green-700">Clear</Text>
+                <Text className="text-[#4CAF50]">Clear</Text>
               </TouchableOpacity>
             </View>
             )}

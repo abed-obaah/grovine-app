@@ -33,7 +33,7 @@ const VideoScreen = () => {
           </Text>
           <Text className="text-gray-600 mt-2">
             Egg Shakshuka is a hearty and flavorful Middle Eastern dish featuring poached eggs simmered in a rich, spiced tomato and bell pepper sauce.{" "}
-            <Text className="text-green-500 font-medium">view more...</Text>
+            <Text className="text-[#4CAF50] font-medium">view more...</Text>
           </Text>
 
         
@@ -43,11 +43,11 @@ const VideoScreen = () => {
         <View className="p-4">
           <View className="flex-row justify-between items-center mb-2">
             <Text className="text-lg font-semibold text-gray-900">Related Recipes</Text>
-            <Text className="text-green-500 font-medium">View all</Text>
+            <Text className="text-[#4CAF50] font-medium">View all</Text>
           </View>
             <RelatedRecipe/>
         </View>
-        <TouchableOpacity className="bg-green-500 py-4 flex-row items-center justify-center rounded-md mx-4 mb-4">
+        <TouchableOpacity className="bg-[#4CAF50] py-4 flex-row items-center justify-center rounded-md mx-4 mb-4">
         <Text className="text-white text-lg font-semibold">View Recipe</Text>
         <MaterialIcons name="shopping-cart" size={20} color="white" className="ml-2" />
       </TouchableOpacity>

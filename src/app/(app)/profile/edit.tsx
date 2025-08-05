@@ -18,7 +18,7 @@ import { router } from "expo-router";
 import { Platform, TextInput } from "react-native";
 import { useState } from "react";
 import { CircularProgress } from "../_layout";
-import { DatePicker } from "src/ui/date-picker";
+// import { DatePicker } from "src/ui/date-picker";
 
 const genders: Option[] = [
   { value: "male", label: "Male" },
@@ -82,9 +82,6 @@ export default function Screen() {
             <Input label="City" placeholder="Abuja" sm />
 
             <Select label="Gender" placeholder="female" options={genders} sm />
-
-            <DatePicker label="Date of birth" placeholder="10/10/2001" />
-
             <Input label="Country" placeholder="Nigeria" sm />
           </View>
         </View>

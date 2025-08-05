@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/splash.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.joybad.grovine"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +38,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6717ed0f-a6d2-445a-81b1-84b1ceb5e576"
+      }
     }
   }
 }

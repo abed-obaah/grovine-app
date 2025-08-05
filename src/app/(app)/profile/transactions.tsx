@@ -1,9 +1,10 @@
+import React from "react";
 import { Image, Text, View } from "../../../ui"; // Update the path to the correct module
 
 // type Props = {
 
 // };
-export const Transactions = () => {
+const Transactions = () => {
     return (
         <View className="w-full flex gap-4">
             {/* <Text className="font-gilroySemibold text-base text-black">
@@ -221,3 +222,4 @@ export const Transactions = () => {
         </View>
     );
 };
+export default Transactions;

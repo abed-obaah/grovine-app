@@ -1,220 +1,126 @@
-import { TabButton } from "@/components/bookings/tab-button";
-import { Header } from "@/components/header";
-import { ScreenLayout } from "@/components/screen-layout";
-import { InformationTab } from "@/components/trip/information-tab";
-import { PassengersTab } from "@/components/trip/passengers-tab";
-import { Button, Image, renderBackdrop, Text, View, WIDTH } from "@/ui";
-import { useMemo, useRef, useState } from "react";
+import React from 'react';
 import {
+  View,
+  Text,
+  SafeAreaView,
   FlatList,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-} from "react-native";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import Feather from "@expo/vector-icons/Feather";
-import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
-import { router } from "expo-router";
+  Image,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
+// import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native'
 
-const TAB_DATA = [
+// Mock data for the notifications list
+const notificationsData = [
   {
-    id: 0,
-    component: <InformationTab />,
+    id: '1',
+    type: 'recipe',
+    title: 'New Recipe:',
+    description: 'Chef Ajunna just uploaded a new recipe on how to make scotched....',
+    image: require('@/assets/chef1.png'),
+    isHighlighted: true,
   },
   {
-    id: 1,
-    component: <PassengersTab />,
+    id: '2',
+    type: 'sales',
+    title: 'Fast Sales:',
+    description: 'View groceries on cheap and fast sales.....',
+    image: require('@/assets/food.png'),
+    isHighlighted: false,
+  },
+  {
+    id: '3',
+    type: 'sales',
+    title: 'Fast Sales:',
+    description: 'View groceries on cheap and fast sales.....',
+    image: require('@/assets/food.png'),
+    isHighlighted: false,
+  },
+  {
+    id: '4',
+    type: 'sales',
+    title: 'Fast Sales:',
+    description: 'View groceries on cheap and fast sales.....',
+    image: require('@/assets/food.png'),
+    isHighlighted: false,
+  },
+  {
+    id: '5',
+    type: 'sales',
+    title: 'Fast Sales:',
+    description: 'View groceries on cheap and fast sales.....',
+    image: require('@/assets/food.png'),
+    isHighlighted: false,
   },
 ];
 
-const cancelOptions = [
-  "My plans have changed",
-  "Personal emergency",
-  "Vehicle issue",
-  "Change in schedule",
-  "Route no longer available",
-  "Weather condition",
-  "Unexpected delays",
-  "Road closures",
-];
+// Individual Notification Item Component
+const NotificationItem = ({ item }) => {
+  if (!item) return null;
 
-export default function Screen() {
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => [140], []);
+  const containerStyle = item.isHighlighted
+    ? 'bg-[#4CAF501F]'
+    : 'bg-white';
 
   return (
-    <>
-      <ScreenLayout useStaticView backgroundColor="#FDFDFD">
-        <View className="pt-[20px]">
-          <Header
-            title="Notification"
-            showMenuButton
-            onMenuButtonPress={() => bottomSheetModalRef?.current?.present()}
-          />
-        </View>
-        <View className="flex-1 bg-[#FAF9F6]">
-          {/* <Empty /> */}
-
-          <ScrollView
-            contentContainerStyle={{
-              flexGrow: 1,
-              paddingVertical: 20,
-              gap: 24,
-            }}
-          >
-            <View className="">
-              <Text className="font-gilroySemibold text-base text-[#667085] px-4 mb-6">
-                New
-              </Text>
-
-              <NotificationItem
-                read
-                time="1 mins ago"
-                title="Payment received"
-                subtitle="Your trip from City A to City B has started now. Track your trip now!"
-                footnote="Departure: July 30, 2024, 09:00 AM"
-              />
-              <NotificationItem
-                time="1 hour ago"
-                title="Upcoming trip reminder!"
-                subtitle="Your trip from City A to City B is approaching. Here are the route details:..."
-                footnote="Departure: July 30, 2024, 09:00 AM"
-              />
-            </View>
-
-            <View className="">
-              <Text className="font-gilroySemibold text-base text-[#667085] px-4 mb-6">
-                Yesterday
-              </Text>
-
-              <NotificationItem
-                read
-                time="yesterday"
-                title="Trip Completed successfully!"
-                subtitle="Your trip from City A to City B has been booked successfully. Download your ticket now!"
-              />
-              <NotificationItem
-                read
-                time="1 hour ago"
-                title="Account Verification Complete"
-                subtitle="Your account verification has been completed  successfully. Download your ticket now!"
-                footnote="yesterday"
-              />
-            </View>
-          </ScrollView>
-        </View>
-      </ScreenLayout>
-
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={0} // Default to 30% when modal is opened
-        snapPoints={snapPoints}
-        enableDismissOnClose={true}
-        enablePanDownToClose={true}
-        handleComponent={() => <View className="absolute w-0 h-0" />}
-        backdropComponent={renderBackdrop}
-      >
-        <BottomSheetView style={styles.contentContainer}>
-          <View className="flex-1 justify-between">
-            <Pressable className="flex-1 items-center justify-center">
-              <Text className="font-gilroySemibold text-base text-textColor">
-                Mark all as read
-              </Text>
-            </Pressable>
-            <Pressable className="flex-1 items-center justify-center">
-              <Text className="font-gilroySemibold text-base text-[#FF3B30]">
-                Clear all
-              </Text>
-            </Pressable>
-          </View>
-        </BottomSheetView>
-      </BottomSheetModal>
-    </>
-  );
-}
-
-const styles = StyleSheet.create({
-  contentContainer: {
-    flex: 1,
-    backgroundColor: "white",
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-    // paddingHorizontal: 16,
-  },
-});
-
-const Empty = () => {
-  return (
-    <View className="flex-1 flex items-center justify-center gap-[30px] p-4">
-      <View className="w-[178px] aspect-[178/224]">
-        <Image
-          source={require("@/assets/images/empty-bookings.svg")}
-          contentFit="contain"
-          className="w-full h-full"
-        />
-      </View>
-
-      <View className="max-w-[80%]">
-        <Text className="text-2xl font-gilroyBold text-textColor text-center">
-          No message notifications
-        </Text>
-
-        <Text className="text-sm font-gilroyRegular text-textColor text-center">
-          Once you get any notification please check here
+    <View className={`flex-row items-center p-3 rounded-xl mx-4 my-1.5 ${containerStyle} shadow-sm shadow-slate-200`}>
+      <Image source={item.image} className="w-12 h-12 rounded-full mr-4" />
+      <View className="flex-1">
+        <Text className="text-slate-800 text-sm" numberOfLines={2}>
+          <Text className="font-bold">{item.title} </Text>
+          {item.description}
         </Text>
       </View>
-
-      <View className="w-full">
-        <Button label="Create trip" fullWidth />
-      </View>
+      <TouchableOpacity className="bg-[#4CAF50] px-5 py-2 rounded-lg ml-2">
+        <Text className="text-white font-semibold text-sm">View</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-type Props = {
-  title: string;
-  subtitle: string;
-  time: string;
-  footnote?: string;
-  read?: boolean;
-};
-const NotificationItem = ({ ...props }: Props) => {
+// Main Screen Component
+const NotificationsScreen = () => {
+  const renderItem = ({ item }) => {
+    if (!item || typeof item !== 'object') return null;
+    return <NotificationItem item={item} />;
+  };
+  const navigation = useNavigation();
   return (
-    <View
-      style={{ backgroundColor: props?.read ? "transparent" : "white" }}
-      className="w-full px-4 py-6 flex-row gap-[10px]"
-    >
-      <View className="w-[50px] aspect-square rounded-full items-center justify-center bg-[#EB963F]">
-        <Image
-          source={require("@/assets/images/logo.png")}
-          className="w-5 h-5"
-          contentFit="contain"
-        />
+    <SafeAreaView className="flex-1 bg-slate-50">
+      <StatusBar barStyle="dark-content" />
+
+      {/* Header */}
+      <View className="flex-row justify-between items-center p-4">
+        <TouchableOpacity
+                 onPress={() => navigation.goBack()}
+                 >
+                  <Image
+                    source={require("@/assets/images/Back.png")}
+                    className="w-8 h-8"
+                    contentFit="contain"
+                  />
+                </TouchableOpacity>
+        <Text className="text-xl font-bold text-slate-800">Notifications</Text>
+        <View className="bg-orange-400 rounded-full w-6 h-6 justify-center items-center">
+          <Text className="text-white font-bold text-xs">9</Text>
+        </View>
       </View>
 
-      <View className="flex-1">
-        <View className="w-full flex-row items-center justify-between">
-          <Text className="text-base font-gilroySemibold text-textColor">
-            {props?.title}
-          </Text>
-
-          <Text className="text-xs font-gilroyRegular text-textColor">
-            {props?.time}
-          </Text>
-        </View>
-
-        <Text className="text-sm font-gilroyMedium text-textColor">
-          {props?.subtitle}
-        </Text>
-
-        {props?.footnote && (
-          <Text className="text-xs font-gilroyRegular text-subTextColor">
-            {props?.footnote}
+      {/* Notifications List */}
+      <FlatList
+        data={notificationsData}
+        keyExtractor={(item) => item?.id}
+        renderItem={renderItem}
+        ListHeaderComponent={() => (
+          <Text className="text-gray-500 font-semibold text-xs uppercase px-4 my-3">
+            15 NOV 2024
           </Text>
         )}
-      </View>
-    </View>
+        contentContainerStyle={{ paddingBottom: 20 }}
+      />
+    </SafeAreaView>
   );
 };
+
+export default NotificationsScreen;

@@ -56,7 +56,7 @@ export default function ProductList() {
         <Text className="text-md font-gilroySemibold text-[#939393]">Explore Fruit Meal Recipes</Text>
         </View>
         
-        <Text className="text-green-500 font-semibold">View all</Text>
+        <Text className="text-[#4CAF50] font-semibold">View all</Text>
       </View>
 
       {/* Product List */}
